@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Water Transfer en Vaca Muerta — Atlas visual</title>
+<meta name="description" content="Atlas visual de las 142 figuras del libro Water Transfer en Vaca Muerta: fotografías de campo, esquemas técnicos y gráficos de cálculo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#f7f5f0; --paper:#ffffff; --line:#e9e3d6; --line-soft:#f0ece2;
+  --ink:#14171e; --ink-2:#3a4256; --ink-3:#7c7a72;
+  --primary:#2f6f5e; --primary-soft:#eaf2ef; --accent:#c97b3f; --accent-soft:#f8efe5;
+  --shadow:0 2px 8px rgba(0,0,0,.04); --shadow-lg:0 8px 28px -6px rgba(20,23,30,.14);
+  --r:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; scroll-padding-top:132px}
+body{
+  margin:0; background:var(--cream); color:var(--ink);
+  font-family:'Outfit',system-ui,sans-serif; font-size:16px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:
+    radial-gradient(60rem 40rem at 88% -8%, rgba(201,123,63,.07), transparent 60%),
+    radial-gradient(50rem 36rem at -6% 12%, rgba(47,111,94,.07), transparent 60%);
+}
+.wrap{max-width:1140px; margin:0 auto; padding:0 24px; position:relative; z-index:1}
+.serif{font-family:'DM Serif Display',Georgia,serif; font-weight:400; letter-spacing:-.005em}
+
+/* ---------- header ---------- */
+header.top{
+  position:sticky; top:0; z-index:60; background:rgba(247,245,240,.86);
+  backdrop-filter:blur(12px); border-bottom:1px solid var(--line);
+}
+.top .wrap{display:flex; align-items:center; gap:18px; height:64px}
+.mark{
+  width:36px; height:36px; border-radius:9px; background:var(--primary); color:#fff;
+  display:grid; place-items:center; font-weight:600; font-size:13px; letter-spacing:.04em; flex:none;
+}
+.brand{font-weight:600; font-size:15px; letter-spacing:-.01em; line-height:1.15}
+.brand small{display:block; font-weight:400; font-size:11.5px; color:var(--ink-3); letter-spacing:.02em}
+.top .spacer{flex:1}
+.pill{
+  display:inline-flex; align-items:center; gap:7px; padding:6px 12px; border-radius:999px;
+  border:1px solid var(--line); background:var(--paper); font-size:12.5px; color:var(--ink-2); font-weight:500;
+}
+.pill b{color:var(--primary); font-weight:600}
+.top .pill.hide-sm{display:none}
+@media(max-width:640px){ .top .pill.hide-sm{display:none} }
+
+/* ---------- hero ---------- */
+.hero{padding:64px 0 44px}
+.hero .wrap{display:grid; grid-template-columns:minmax(0,1fr) 344px; gap:56px; align-items:center}
+.eyebrow{
+  display:inline-flex; align-items:center; gap:8px; font-size:11.5px; font-weight:600;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--primary); margin-bottom:18px;
+}
+.eyebrow::before{content:""; width:26px; height:1.5px; background:var(--primary); opacity:.5}
+h1{font-size:clamp(2.3rem,5vw,3.5rem); line-height:1.04; margin:0 0 18px}
+h1 em{font-style:normal; color:var(--primary)}
+.lede{font-size:17.5px; line-height:1.62; color:var(--ink-2); max-width:44ch; margin:0 0 26px; font-weight:300}
+.byline{display:flex; align-items:center; gap:12px; margin-bottom:28px; color:var(--ink-2); font-size:14px}
+.avatar{
+  width:40px;height:40px;border-radius:50%;flex:none;
+  background:linear-gradient(140deg,var(--primary),var(--accent));
+  display:grid;place-items:center;color:#fff;font-weight:600;font-size:14px;
+}
+.byline b{color:var(--ink); font-weight:600}
+.byline span{color:var(--ink-3); display:block; font-size:12.5px}
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:0; border-top:1px solid var(--line); padding-top:20px}
+.stat b{display:block; font-family:'DM Serif Display',serif; font-size:1.85rem; line-height:1; color:var(--primary)}
+.stat span{font-size:11.5px; color:var(--ink-3); letter-spacing:.06em; text-transform:uppercase}
+.cover{position:relative}
+.cover img{width:100%; border-radius:18px; box-shadow:var(--shadow-lg); display:block}
+.cover figcaption{
+  position:absolute; left:14px; right:14px; bottom:14px; background:rgba(20,23,30,.62);
+  backdrop-filter:blur(6px); color:#fff; border-radius:10px; padding:9px 13px; font-size:11.5px; line-height:1.45;
+}
+@media(max-width:900px){ .hero .wrap{grid-template-columns:1fr; gap:34px} .cover{order:-1; max-width:340px} }
+
+/* ---------- toolbar ---------- */
+.toolbar{
+  position:sticky; top:64px; z-index:50; background:rgba(247,245,240,.93);
+  backdrop-filter:blur(12px); border-bottom:1px solid var(--line); padding:14px 0;
+}
+.toolbar .wrap{display:flex; flex-direction:column; gap:12px}
+@media(max-width:760px){
+  .toolbar{position:static; background:transparent; backdrop-filter:none; border-bottom:0; padding:10px 0 0}
+  .toolbar .wrap{gap:10px}
+}
+.row{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
+.seg{display:inline-flex; background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:3px; gap:2px}
+.seg button{
+  appearance:none; border:0; background:transparent; font:inherit; font-size:13px; font-weight:500;
+  color:var(--ink-2); padding:6px 13px; border-radius:7px; cursor:pointer; display:inline-flex; align-items:center; gap:7px;
+  transition:background .18s ease,color .18s ease;
+}
+.seg button:hover{background:var(--line-soft)}
+.seg button[aria-pressed="true"]{background:var(--primary); color:#fff}
+.seg button .n{font-size:11px; opacity:.7; font-variant-numeric:tabular-nums}
+.search{position:relative; margin-left:auto; min-width:230px; flex:1; max-width:340px}
+.search svg{position:absolute; left:11px; top:50%; transform:translateY(-50%); color:var(--ink-3)}
+.search input{
+  width:100%; font:inherit; font-size:13.5px; padding:8px 12px 8px 34px; border-radius:9px;
+  border:1px solid var(--line); background:var(--paper); color:var(--ink);
+}
+.search input:focus{outline:2px solid var(--primary); outline-offset:-1px; border-color:transparent}
+@media(max-width:760px){
+  .row{gap:9px}
+  .search{margin-left:0; max-width:none; width:100%; flex:1 0 100%; order:3}
+  .seg{max-width:100%; overflow-x:auto; scrollbar-width:none}
+  .seg::-webkit-scrollbar{display:none}
+  .seg button{white-space:nowrap}
+  .result{margin-left:auto}
+}
+.chips{display:flex; gap:7px; overflow-x:auto; padding-bottom:2px; scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{
+  appearance:none; cursor:pointer; white-space:nowrap; font:inherit; font-size:12.5px; font-weight:500;
+  padding:5px 11px; border-radius:999px; border:1px solid var(--line); background:var(--paper); color:var(--ink-2);
+  transition:all .16s ease;
+}
+.chip:hover{border-color:var(--primary); color:var(--primary)}
+.chip.active{background:var(--primary); border-color:var(--primary); color:#fff}
+.chip .n{opacity:.55; margin-left:5px; font-size:11px}
+.result{font-size:12.5px; color:var(--ink-3); white-space:nowrap}
+.result b{color:var(--ink); font-weight:600}
+
+/* ---------- partes y capítulos ---------- */
+main{padding:48px 0 20px}
+.part{margin-bottom:54px}
+.part-head{display:flex; align-items:baseline; gap:14px; margin-bottom:6px}
+.part-num{
+  font-family:'DM Serif Display',serif; font-size:1rem; color:var(--primary); letter-spacing:.06em; flex:none;
+}
+.part-title{font-size:1.5rem; margin:0}
+.part-rule{flex:1; height:1px; background:var(--line)}
+.chapter{margin-top:38px}
+.chapter-head{display:flex; align-items:baseline; gap:12px; margin-bottom:18px}
+.chapter-head h3{font-size:1.12rem; margin:0; font-weight:500; letter-spacing:-.01em}
+.chapter-head .num{
+  font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--accent); background:var(--accent-soft); padding:3px 8px; border-radius:5px; flex:none;
+}
+.chapter-head .count{font-size:12px; color:var(--ink-3); margin-left:auto; white-space:nowrap}
+@media(max-width:620px){
+  .chapter-head{flex-wrap:wrap; row-gap:4px}
+  .chapter-head h3{flex:1 1 auto}
+  .chapter-head .count{margin-left:0; flex:1 0 100%}
+}
+.empty{
+  text-align:center; padding:60px 20px; color:var(--ink-3); font-size:15px;
+  border:1px dashed var(--line); border-radius:var(--r); background:rgba(255,255,255,.5);
+}
+
+/* ---------- galería ---------- */
+.grid{columns:4; column-gap:18px}
+@media(max-width:1040px){ .grid{columns:3} }
+@media(max-width:760px){ .grid{columns:2} }
+@media(max-width:460px){ .grid{columns:1} }
+.card{
+  break-inside:avoid; margin:0 0 18px; background:var(--paper); border:1px solid var(--line);
+  border-radius:var(--r); overflow:hidden; box-shadow:var(--shadow); cursor:zoom-in;
+  transition:transform .22s cubic-bezier(.2,.7,.3,1), box-shadow .22s ease, border-color .22s ease;
+  display:block; width:100%; text-align:left; font:inherit; color:inherit; padding:0;
+}
+.card:hover{transform:translateY(-3px); box-shadow:var(--shadow-lg); border-color:#d9d1bf}
+.card:focus-visible{outline:2px solid var(--primary); outline-offset:2px}
+.card .shot{position:relative; background:#efece4; overflow:hidden; display:block}
+.card .shot img{width:100%; height:auto; display:block; transition:transform .4s cubic-bezier(.2,.7,.3,1)}
+.card:hover .shot img{transform:scale(1.035)}
+.card .zoom{
+  position:absolute; right:9px; bottom:9px; width:30px; height:30px; border-radius:8px;
+  background:rgba(20,23,30,.62); color:#fff; display:grid; place-items:center;
+  opacity:0; transform:translateY(4px); transition:opacity .2s ease, transform .2s ease;
+  backdrop-filter:blur(4px);
+}
+.card:hover .zoom{opacity:1; transform:none}
+.card figcaption{padding:11px 13px 13px}
+.card .meta{display:flex; align-items:center; gap:8px; margin-bottom:5px}
+.card .fid{
+  font-size:11px; font-weight:600; letter-spacing:.04em; color:var(--primary);
+  font-variant-numeric:tabular-nums;
+}
+.tag{
+  font-size:10px; font-weight:600; letter-spacing:.07em; text-transform:uppercase;
+  padding:2px 7px; border-radius:5px; background:var(--line-soft); color:var(--ink-3);
+}
+.tag.foto{background:#eef1f0; color:#4a6b62}
+.tag.esquema{background:#eef0f6; color:#4a5570}
+.tag.grafico{background:var(--accent-soft); color:#9a5a24}
+.card .short{margin:0; font-size:13px; line-height:1.45; color:var(--ink-2); font-weight:300}
+.card .pg{margin-top:7px; font-size:11px; color:var(--ink-3)}
+
+/* ---------- lightbox ---------- */
+.lb{
+  position:fixed; inset:0; z-index:200; background:rgba(18,20,26,.93);
+  display:none; flex-direction:column; opacity:0; transition:opacity .2s ease;
+}
+.lb.open{display:flex; opacity:1}
+.lb-top{display:flex; align-items:center; gap:14px; padding:14px 22px; color:#e8e6e0; flex:none}
+.lb-top .fid{color:#8fd3bd; font-size:12.5px; font-weight:600; letter-spacing:.05em}
+.lb-top .ttl{font-size:14px; opacity:.85; font-weight:300}
+.lb-top .spacer{flex:1}
+.lb-btn{
+  appearance:none; border:1px solid rgba(255,255,255,.16); background:rgba(255,255,255,.06); color:#fff;
+  width:36px;height:36px;border-radius:9px; display:grid;place-items:center; cursor:pointer; transition:all .16s ease;
+}
+.lb-btn:hover{background:rgba(255,255,255,.16); border-color:rgba(255,255,255,.34)}
+.lb-body{flex:1; display:flex; align-items:center; justify-content:center; padding:0 22px; min-height:0}
+.lb-body img{max-width:100%; max-height:calc(100vh - 210px); object-fit:contain; border-radius:8px; box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.lb-foot{padding:14px 22px 22px; color:#cfcdc7; flex:none; display:flex; gap:22px; align-items:flex-start}
+.lb-foot .txt{font-size:13.5px; line-height:1.55; max-width:78ch; font-weight:300}
+.lb-foot .aside{margin-left:auto; text-align:right; font-size:12px; opacity:.7; white-space:nowrap}
+.lb-foot .aside a{color:#8fd3bd; text-decoration:none}
+.lb-foot .aside a:hover{text-decoration:underline}
+.nav{
+  position:absolute; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%;
+  background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.18); color:#fff; display:grid; place-items:center;
+  cursor:pointer; transition:all .16s ease;
+}
+.nav:hover{background:rgba(255,255,255,.22)}
+.nav.prev{left:18px} .nav.next{right:18px}
+@media(max-width:700px){
+  .lb-foot{flex-direction:column; gap:10px}
+  .lb-foot .aside{margin-left:0; text-align:left}
+  .nav{width:38px;height:38px} .nav.prev{left:8px} .nav.next{right:8px}
+}
+
+/* ---------- footer ---------- */
+footer{margin-top:70px; border-top:1px solid var(--line); padding:34px 0 54px; color:var(--ink-3); font-size:13px}
+footer .cols{display:flex; gap:34px; flex-wrap:wrap; align-items:flex-start}
+footer .cols > div{max-width:340px}
+footer b{color:var(--ink-2); font-weight:600; display:block; margin-bottom:5px; font-size:13.5px}
+footer .r{margin-left:auto; text-align:right; max-width:280px}
+@media(max-width:700px){ footer .r{margin-left:0; text-align:left} }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="mark">WT</div>
+    <div class="brand">Water Transfer en Vaca Muerta<small>Atlas visual de figuras y gráficos</small></div>
+    <div class="spacer"></div>
+    <span class="pill hide-sm"><b id="pillTotal">142</b>&nbsp;figuras</span>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Obra técnica integral de la especialidad</span>
+      <h1 class="serif">Water Transfer<br>en <em>Vaca Muerta</em></h1>
+      <p class="lede">Diseño, montaje, operación, seguridad y gestión de la conducción y el almacenamiento temporal de agua para la industria no convencional.</p>
+      <div class="byline">
+        <div class="avatar">VP</div>
+        <div><b>Lic. Víctor Javier Paredes</b><span>Control Operativo, Ingeniería de Traza &amp; SSA</span></div>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>142</b><span>Figuras</span></div>
+        <div class="stat"><b>19</b><span>Capítulos</span></div>
+        <div class="stat"><b>7</b><span>Partes</span></div>
+        <div class="stat"><b>278</b><span>Páginas</span></div>
+      </div>
+    </div>
+    <figure class="cover">
+      <img src="cover.jpg" alt="Vista aérea de una locación de fractura con pileta de agua al atardecer, sobre el río Neuquén">
+      <figcaption>Locación de fractura al ocaso, con su batería de tanques australianos. Fig. 1.2.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<div class="toolbar">
+  <div class="wrap">
+    <div class="row">
+      <div class="seg" role="group" aria-label="Filtrar por tipo de figura">
+        <button data-type="all" aria-pressed="true">Todas <span class="n">142</span></button>
+        <button data-type="foto" aria-pressed="false">Fotografías <span class="n">112</span></button>
+        <button data-type="esquema" aria-pressed="false">Esquemas <span class="n">11</span></button>
+        <button data-type="grafico" aria-pressed="false">Gráficos <span class="n">19</span></button>
+      </div>
+      <div class="search">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="q" type="search" placeholder="Buscar en pies de foto…" aria-label="Buscar figuras">
+      </div>
+      <span class="result" id="result"></span>
+    </div>
+    <div class="chips" id="chips"></div>
+  </div>
+</div>
+
+<main><div class="wrap" id="gallery"></div></main>
+
+<footer>
+  <div class="wrap cols">
+    <div>
+      <b>Water Transfer en Vaca Muerta</b>
+      Primera edición · 2026. Obra técnica integral de la especialidad. Cuenca Neuquina, Neuquén, Argentina.
+    </div>
+    <div>
+      <b>Sobre este atlas</b>
+      Las 142 figuras del libro extraídas y recortadas del PDF original a 200 dpi: fotografías de campo, esquemas técnicos y gráficos de cálculo vectoriales.
+    </div>
+    <div class="r">
+      <b>Lic. Víctor Javier Paredes</b>
+      Control Operativo, Ingeniería de Traza &amp; SSA
+    </div>
+  </div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Figura ampliada">
+  <div class="lb-top">
+    <span class="fid" id="lbFid"></span>
+    <span class="ttl" id="lbTtl"></span>
+    <span class="spacer"></span>
+    <span class="ttl" id="lbPos"></span>
+    <button class="lb-btn" id="lbClose" aria-label="Cerrar">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="lb-body">
+    <button class="nav prev" id="lbPrev" aria-label="Anterior"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+    <img id="lbImg" alt="">
+    <button class="nav next" id="lbNext" aria-label="Siguiente"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+  </div>
+  <div class="lb-foot">
+    <div class="txt" id="lbCap"></div>
+    <div class="aside" id="lbAside"></div>
+  </div>
+</div>
+
+<script>
+const DATA = [{"id":"1.1","cap":1,"capTitle":"Por qué se hace transfer de agua","part":1,"partTitle":"I · Fundamentos","page":24,"tipo":"foto","caption":"Dotación de un frente de trabajo. El servicio se monta y se opera con personas, no con equipos","short":"Dotación de un frente de trabajo","file":"fig-1.1.jpg","w":1117,"h":626,"ar":1.784},{"id":"1.2","cap":1,"capTitle":"Por qué se hace transfer de agua","part":1,"partTitle":"I · Fundamentos","page":25,"tipo":"foto","caption":"Locación de fractura al ocaso, con su batería de tanques y el equipo de perforación de la locación vecina. Las distancias entre nodos, y no la complejidad de cada nodo, son las que gobiernan el diseño del sistema","short":"Locación de fractura al ocaso, con su batería de tanques y el equipo de perforación de la locación vecina","file":"fig-1.2.jpg","w":1166,"h":873,"ar":1.336},{"id":"1.3","cap":1,"capTitle":"Por qué se hace transfer de agua","part":1,"partTitle":"I · Fundamentos","page":26,"tipo":"grafico","caption":"Suministro constante frente a consumo pulsante del set de fractura","short":"Suministro constante frente a consumo pulsante del set de fractura","file":"fig-1.3.jpg","w":1194,"h":907,"ar":1.316},{"id":"1.4","cap":1,"capTitle":"Por qué se hace transfer de agua","part":1,"partTitle":"I · Fundamentos","page":27,"tipo":"foto","caption":"Tanque australiano en posición de servicio junto al set de fractura. El volumen almacenado es el pulmón entre un aporte constante y una demanda que sube y baja con cada etapa bombeada","short":"Tanque australiano en posición de servicio junto al set de fractura","file":"fig-1.4.jpg","w":1166,"h":873,"ar":1.336},{"id":"1.5","cap":1,"capTitle":"Por qué se hace transfer de agua","part":1,"partTitle":"I · Fundamentos","page":28,"tipo":"foto","caption":"Un camión carretón con su carga de carretes: trece a catorce rollos por viaje, cincuenta carretes por cada diez kilómetros de línea","short":"Un camión carretón con su carga de carretes: trece a catorce rollos por viaje, cincuenta carretes por cada…","file":"fig-1.5.jpg","w":1117,"h":840,"ar":1.33},{"id":"1.6","cap":1,"capTitle":"Por qué se hace transfer de agua","part":1,"partTitle":"I · Fundamentos","page":29,"tipo":"grafico","caption":"Esquema general del sistema de transfer","short":"Esquema general del sistema de transfer","file":"fig-1.6.jpg","w":1194,"h":698,"ar":1.711},{"id":"1.7","cap":1,"capTitle":"Por qué se hace transfer de agua","part":1,"partTitle":"I · Fundamentos","page":33,"tipo":"esquema","caption":"Toma continua de una estación de transferencia frente a los caudales característicos del río Neuquén, y demanda anual proyectada de la actividad frente a la escorrentía de la cuenca. Elaboración propia sobre datos de caudal de la AIC; las cifras de etapas son estimaciones","short":"Toma continua de una estación de transferencia frente a los caudales característicos del río Neuquén, y…","file":"fig-1.7.jpg","w":1246,"h":931,"ar":1.338},{"id":"2.1","cap":2,"capTitle":"Permisos, marco normativo y hoja de ruta","part":1,"partTitle":"I · Fundamentos","page":37,"tipo":"foto","caption":"Tranquera de acceso con candado. El recorrido, las tranqueras y la obligación de cerrarlas forman parte del acuerdo con el superficiario","short":"Tranquera de acceso con candado","file":"fig-2.1.jpg","w":1116,"h":840,"ar":1.329},{"id":"2.2","cap":2,"capTitle":"Permisos, marco normativo y hoja de ruta","part":1,"partTitle":"I · Fundamentos","page":37,"tipo":"foto","caption":"Apertura de tranquera de superficiario. El compromiso de volver a cerrarla forma parte del acuerdo y su incumplimiento es la causa más frecuente de conflicto","short":"Apertura de tranquera de superficiario","file":"fig-2.2.jpg","w":1116,"h":839,"ar":1.33},{"id":"2.3","cap":2,"capTitle":"Permisos, marco normativo y hoja de ruta","part":1,"partTitle":"I · Fundamentos","page":38,"tipo":"foto","caption":"Puesto de control de acceso a yacimiento: la documentación de equipos y personal se verifica antes de la movilización, no en la tranquera","short":"Puesto de control de acceso a yacimiento: la documentación de equipos y personal se verifica antes de la…","file":"fig-2.3.jpg","w":1117,"h":839,"ar":1.331},{"id":"3.1","cap":3,"capTitle":"Relevamiento, altimetría y KMZ","part":2,"partTitle":"II · Ingeniería previa","page":43,"tipo":"foto","caption":"Fauna sobre la traza durante el reconocimiento de campo. Condiciona el trazado, la velocidad de circulación y el cierre de tranqueras","short":"Fauna sobre la traza durante el reconocimiento de campo","file":"fig-3.1.jpg","w":1116,"h":506,"ar":2.206},{"id":"3.2","cap":3,"capTitle":"Relevamiento, altimetría y KMZ","part":2,"partTitle":"II · Ingeniería previa","page":43,"tipo":"foto","caption":"Locación emplazada sobre una barda inmediata al espejo de agua. La proximidad a la fuente acorta el tendido, pero concentra el riesgo: toda pérdida escurre por pendiente hacia el cuerpo receptor","short":"Locación emplazada sobre una barda inmediata al espejo de agua","file":"fig-3.2.jpg","w":678,"h":489,"ar":1.387},{"id":"3.3","cap":3,"capTitle":"Relevamiento, altimetría y KMZ","part":2,"partTitle":"II · Ingeniería previa","page":44,"tipo":"grafico","caption":"Perfil altimétrico con ejes de cota y progresiva","short":"Perfil altimétrico con ejes de cota y progresiva","file":"fig-3.3.jpg","w":1194,"h":944,"ar":1.265},{"id":"4.1","cap":4,"capTitle":"Cálculo hidráulico","part":2,"partTitle":"II · Ingeniería previa","page":50,"tipo":"grafico","caption":"Las tres ideas encadenadas, con los valores de una troncal en operación","short":"Las tres ideas encadenadas, con los valores de una troncal en operación","file":"fig-4.1.jpg","w":1297,"h":1132,"ar":1.146},{"id":"4.2","cap":4,"capTitle":"Cálculo hidráulico","part":2,"partTitle":"II · Ingeniería previa","page":56,"tipo":"grafico","caption":"Curva de bomba frente a curva del sistema. Curva esquemática sobre envolvente de catálogo: no usar para dimensionar","short":"Curva de bomba frente a curva del sistema","file":"fig-4.2.jpg","w":1194,"h":1157,"ar":1.032},{"id":"4.3","cap":4,"capTitle":"Cálculo hidráulico","part":2,"partTitle":"II · Ingeniería previa","page":57,"tipo":"esquema","caption":"Perfil de elevación de una traza con cima intermedia: la línea de grado hidráulico y la ubicación de los dispositivos rompe-carga en el tramo descendente","short":"Perfil de elevación de una traza con cima intermedia: la línea de grado hidráulico y la ubicación de los…","file":"fig-4.3.jpg","w":1220,"h":913,"ar":1.336},{"id":"4.4","cap":4,"capTitle":"Cálculo hidráulico","part":2,"partTitle":"II · Ingeniería previa","page":60,"tipo":"grafico","caption":"Perfil de presiones de una troncal de 18 km con seis estaciones","short":"Perfil de presiones de una troncal de 18 km con seis estaciones","file":"fig-4.4.jpg","w":1194,"h":944,"ar":1.265},{"id":"4.5","cap":4,"capTitle":"Cálculo hidráulico","part":2,"partTitle":"II · Ingeniería previa","page":63,"tipo":"grafico","caption":"Escalonamiento de la caída con dispositivos rompe-carga","short":"Escalonamiento de la caída con dispositivos rompe-carga","file":"fig-4.5.jpg","w":1194,"h":1140,"ar":1.047},{"id":"4.6","cap":4,"capTitle":"Cálculo hidráulico","part":2,"partTitle":"II · Ingeniería previa","page":64,"tipo":"grafico","caption":"Traza con ascenso de 220 m y descenso de 285 m. Los dos rompe-carga surgen del criterio de escalonamiento con manguera de 200 psi","short":"Traza con ascenso de 220 m y descenso de 285 m","file":"fig-4.6.jpg","w":1194,"h":1036,"ar":1.153},{"id":"4.7","cap":4,"capTitle":"Cálculo hidráulico","part":2,"partTitle":"II · Ingeniería previa","page":66,"tipo":"esquema","caption":"Presión en operación frente a presión de cierre. Con la válvula cerrada desaparece la fricción y la altura de cierre supera la admisible de la manguera","short":"Presión en operación frente a presión de cierre","file":"fig-4.7.jpg","w":1168,"h":874,"ar":1.336},{"id":"4.8","cap":4,"capTitle":"Cálculo hidráulico","part":2,"partTitle":"II · Ingeniería previa","page":70,"tipo":"grafico","caption":"Terreno y línea de energía. Las tres estaciones caben en los primeros 3,9 km; los 14,7 km restantes llegan al pulmón sin bombeo","short":"Terreno y línea de energía","file":"fig-4.8.jpg","w":1297,"h":730,"ar":1.777},{"id":"5.1","cap":5,"capTitle":"Captación","part":3,"partTitle":"III · Sistema físico","page":77,"tipo":"foto","caption":"Pileta artificial recién terminada, con geomembrana anclada en zanja perimetral y talud conformado, antes del primer llenado","short":"Pileta artificial recién terminada, con geomembrana anclada en zanja perimetral y talud conformado, antes del…","file":"fig-5.1.jpg","w":1116,"h":839,"ar":1.33},{"id":"5.2","cap":5,"capTitle":"Captación","part":3,"partTitle":"III · Sistema físico","page":78,"tipo":"foto","caption":"La misma pileta en operación: el reservorio desacopla una captación sostenida a caudal bajo durante meses de la demanda concentrada de cada campaña. Sobre el margen derecho, la casilla de bombeo y las líneas de impulsión de salida","short":"La misma pileta en operación: el reservorio desacopla una captación sostenida a caudal bajo durante meses de…","file":"fig-5.2.jpg","w":1194,"h":669,"ar":1.785},{"id":"5.3","cap":5,"capTitle":"Captación","part":3,"partTitle":"III · Sistema físico","page":78,"tipo":"foto","caption":"Obra de toma sobre río: compuerta, reja de retención y protección de talud con gaviones","short":"Obra de toma sobre río: compuerta, reja de retención y protección de talud con gaviones","file":"fig-5.3.jpg","w":1039,"h":781,"ar":1.33},{"id":"5.4","cap":5,"capTitle":"Captación","part":3,"partTitle":"III · Sistema físico","page":79,"tipo":"foto","caption":"Vista aérea de piletas artificiales gemelas con su camino perimetral. La operación de reposición se dimensiona por concurrencia, no por traza","short":"Vista aérea de piletas artificiales gemelas con su camino perimetral","file":"fig-5.4.jpg","w":1039,"h":661,"ar":1.572},{"id":"5.5","cap":5,"capTitle":"Captación","part":3,"partTitle":"III · Sistema físico","page":81,"tipo":"foto","caption":"Sistema de bombeo de captación con vallado perimetral, cisterna de gasoil y torre de iluminación, sobre geomembrana continua","short":"Sistema de bombeo de captación con vallado perimetral, cisterna de gasoil y torre de iluminación, sobre…","file":"fig-5.5.jpg","w":1160,"h":872,"ar":1.33},{"id":"5.6","cap":5,"capTitle":"Captación","part":3,"partTitle":"III · Sistema físico","page":83,"tipo":"foto","caption":"Cámara de cebado del sistema autocebante, con la indicación de fábrica: abierta para aspiración con altura, cerrada cuando la succión llega inundada. Advierte además no presurizarla por encima de 15 psi","short":"Cámara de cebado del sistema autocebante, con la indicación de fábrica: abierta para aspiración con altura,…","file":"fig-5.6.jpg","w":656,"h":872,"ar":0.752},{"id":"5.7","cap":5,"capTitle":"Captación","part":3,"partTitle":"III · Sistema físico","page":83,"tipo":"foto","caption":"La cámara de cebado y la bomba de vacío que la alimenta, sobre el cuerpo de la motobomba. Es el conjunto que permite evacuar el aire de la succión antes de arrancar","short":"La cámara de cebado y la bomba de vacío que la alimenta, sobre el cuerpo de la motobomba","file":"fig-5.7.jpg","w":1013,"h":761,"ar":1.331},{"id":"6.1","cap":6,"capTitle":"Conducción, rebombeos y pulmones","part":3,"partTitle":"III · Sistema físico","page":85,"tipo":"foto","caption":"Impulsión de motobomba: codo bridado, reducción y acople ranurado a la layflat","short":"Impulsión de motobomba: codo bridado, reducción y acople ranurado a la layflat","file":"fig-6.1.jpg","w":656,"h":872,"ar":0.752},{"id":"6.2","cap":6,"capTitle":"Conducción, rebombeos y pulmones","part":3,"partTitle":"III · Sistema físico","page":86,"tipo":"esquema","caption":"Conjunto de una estación: colector de succión con filtro canasta y manómetro de vacío, unidad de motobomba con cebado Venturi, y módulo de descarga con retención y sensor de presión, todo sobre contención secundaria","short":"Conjunto de una estación: colector de succión con filtro canasta y manómetro de vacío, unidad de motobomba…","file":"fig-6.2.jpg","w":1194,"h":893,"ar":1.337},{"id":"6.3","cap":6,"capTitle":"Conducción, rebombeos y pulmones","part":3,"partTitle":"III · Sistema físico","page":88,"tipo":"esquema","caption":"Configuración del equipo de rebombeo y criterio de emplazamiento: terreno firme elevado, distancia de seguridad al lecho de arroyo y a las líneas eléctricas","short":"Configuración del equipo de rebombeo y criterio de emplazamiento: terreno firme elevado, distancia de…","file":"fig-6.3.jpg","w":1220,"h":913,"ar":1.336},{"id":"6.4","cap":6,"capTitle":"Conducción, rebombeos y pulmones","part":3,"partTitle":"III · Sistema físico","page":89,"tipo":"esquema","caption":"Secuencia de montaje de una estación, de la nivelación del terreno al comisionamiento y registro en el KMZ","short":"Secuencia de montaje de una estación, de la nivelación del terreno al comisionamiento y registro en el KMZ","file":"fig-6.4.jpg","w":1220,"h":913,"ar":1.336},{"id":"6.5","cap":6,"capTitle":"Conducción, rebombeos y pulmones","part":3,"partTitle":"III · Sistema físico","page":91,"tipo":"foto","caption":"Vista cenital de la locación durante el llenado. El tanque se emplaza en el cuadrante que acorta la succión hacia los blenders sin interferir con la zona de maniobra de arena y camiones","short":"Vista cenital de la locación durante el llenado","file":"fig-6.5.jpg","w":1166,"h":873,"ar":1.336},{"id":"6.6","cap":6,"capTitle":"Conducción, rebombeos y pulmones","part":3,"partTitle":"III · Sistema físico","page":92,"tipo":"foto","caption":"Válvula de aire —ventosa— sobre la línea. Su uso no es uniforme: algunas empresas de servicio las instalan en los puntos altos de la traza y otras resuelven el aire por procedimiento, abriendo una unión. Ver la comparación en 9.2","short":"Válvula de aire —ventosa— sobre la línea","file":"fig-6.6.jpg","w":657,"h":872,"ar":0.753},{"id":"6.7","cap":6,"capTitle":"Conducción, rebombeos y pulmones","part":3,"partTitle":"III · Sistema físico","page":93,"tipo":"grafico","caption":"Columna estática entre el pulmón de última milla y el pad","short":"Columna estática entre el pulmón de última milla y el pad","file":"fig-6.7.jpg","w":1194,"h":928,"ar":1.287},{"id":"6.8","cap":6,"capTitle":"Conducción, rebombeos y pulmones","part":3,"partTitle":"III · Sistema físico","page":95,"tipo":"esquema","caption":"Estación de antirretorno con by-pass superior: válvula normalmente cerrada con bloqueo, y manómetros aguas arriba y aguas abajo para verificar estanqueidad","short":"Estación de antirretorno con by-pass superior: válvula normalmente cerrada con bloqueo, y manómetros aguas…","file":"fig-6.8.jpg","w":1194,"h":893,"ar":1.337},{"id":"6.9","cap":6,"capTitle":"Conducción, rebombeos y pulmones","part":3,"partTitle":"III · Sistema físico","page":96,"tipo":"esquema","caption":"Perfil hidráulico con puntos altos y bajos: admisión de aire en las crestas, retención de columna en los tramos ascendentes, rompe-carga en los descensos y purga en los valles","short":"Perfil hidráulico con puntos altos y bajos: admisión de aire en las crestas, retención de columna en los…","file":"fig-6.9.jpg","w":1194,"h":893,"ar":1.337},{"id":"7.1","cap":7,"capTitle":"Almacenamiento en pad","part":3,"partTitle":"III · Sistema físico","page":98,"tipo":"foto","caption":"Descarga a pileta sobre el coronamiento del talud. El cuello de cisne evita el rozamiento de la manguera contra el borde de la geomembrana","short":"Descarga a pileta sobre el coronamiento del talud","file":"fig-7.1.jpg","w":1039,"h":583,"ar":1.782},{"id":"7.2","cap":7,"capTitle":"Almacenamiento en pad","part":3,"partTitle":"III · Sistema físico","page":100,"tipo":"esquema","caption":"Geometría del tanque australiano: relación entre perímetro, radio y capacidad, y diferencia entre capacidad nominal y volumen útil una vez descontados el resguardo superior y el colchón de fondo","short":"Geometría del tanque australiano: relación entre perímetro, radio y capacidad, y diferencia entre capacidad…","file":"fig-7.2.jpg","w":1245,"h":933,"ar":1.334},{"id":"7.3","cap":7,"capTitle":"Almacenamiento en pad","part":3,"partTitle":"III · Sistema físico","page":100,"tipo":"foto","caption":"Batería de seis tanques en una misma locación. Las diferencias de color responden al grado de turbidez de cada llenado, no al tipo de agua almacenada","short":"Batería de seis tanques en una misma locación","file":"fig-7.3.jpg","w":1194,"h":669,"ar":1.785},{"id":"7.4","cap":7,"capTitle":"Almacenamiento en pad","part":3,"partTitle":"III · Sistema físico","page":101,"tipo":"foto","caption":"Montaje de anillo: hidrogrúa y manipulador telescópico trabajando con la cuadrilla","short":"Montaje de anillo: hidrogrúa y manipulador telescópico trabajando con la cuadrilla","file":"fig-7.4.jpg","w":1039,"h":780,"ar":1.332},{"id":"7.5","cap":7,"capTitle":"Almacenamiento en pad","part":3,"partTitle":"III · Sistema físico","page":102,"tipo":"foto","caption":"Anillo completo con refuerzos verticales y escaleras internas","short":"Anillo completo con refuerzos verticales y escaleras internas","file":"fig-7.5.jpg","w":1039,"h":781,"ar":1.33},{"id":"7.6","cap":7,"capTitle":"Almacenamiento en pad","part":3,"partTitle":"III · Sistema físico","page":103,"tipo":"foto","caption":"Cierre del anillo perimetral. Las placas se descargan con hidrogrúa siguiendo el sentido de armado y se traban con cuñas hasta completar el bulonado","short":"Cierre del anillo perimetral","file":"fig-7.6.jpg","w":1194,"h":669,"ar":1.785},{"id":"7.7","cap":7,"capTitle":"Almacenamiento en pad","part":3,"partTitle":"III · Sistema físico","page":104,"tipo":"foto","caption":"Sombrero bulonado sobre la brida de succión, con la malla antivórtice a la vista, durante el sellado sobre la lona","short":"Sombrero bulonado sobre la brida de succión, con la malla antivórtice a la vista, durante el sellado sobre la…","file":"fig-7.7.jpg","w":1039,"h":582,"ar":1.785},{"id":"7.8","cap":7,"capTitle":"Almacenamiento en pad","part":3,"partTitle":"III · Sistema físico","page":104,"tipo":"foto","caption":"Lastre con bolsas sobre la succión durante el curado del pegado","short":"Lastre con bolsas sobre la succión durante el curado del pegado","file":"fig-7.8.jpg","w":655,"h":872,"ar":0.751},{"id":"7.9","cap":7,"capTitle":"Almacenamiento en pad","part":3,"partTitle":"III · Sistema físico","page":106,"tipo":"foto","caption":"Conjunto de succión de tanque con válvulas de corte a ambos lados y brida ciega de inspección","short":"Conjunto de succión de tanque con válvulas de corte a ambos lados y brida ciega de inspección","file":"fig-7.9.jpg","w":1117,"h":840,"ar":1.33},{"id":"7.10","cap":7,"capTitle":"Almacenamiento en pad","part":3,"partTitle":"III · Sistema físico","page":106,"tipo":"esquema","caption":"Corte transversal de la instalación de succión: boca al ras de la lona con malla antivórtice y ponchos de refuerzo, caño enterrado bajo el nivel de platea, paso por el borde inferior de la placa trabado con cuña metálica y salida exterior con válvula","short":"Corte transversal de la instalación de succión: boca al ras de la lona con malla antivórtice y ponchos de…","file":"fig-7.10.jpg","w":1220,"h":912,"ar":1.338},{"id":"7.11","cap":7,"capTitle":"Almacenamiento en pad","part":3,"partTitle":"III · Sistema físico","page":107,"tipo":"foto","caption":"Lastre de bolsas sobre el parche de succión: se mantiene hasta que el adhesivo completa el curado","short":"Lastre de bolsas sobre el parche de succión: se mantiene hasta que el adhesivo completa el curado","file":"fig-7.11.jpg","w":1039,"h":583,"ar":1.782},{"id":"7.12","cap":7,"capTitle":"Almacenamiento en pad","part":3,"partTitle":"III · Sistema físico","page":108,"tipo":"foto","caption":"Lona embolsada por el viento sobre un tanque sin llenar. Es la razón del criterio de no dejar nunca un tanque armado y vacío","short":"Lona embolsada por el viento sobre un tanque sin llenar","file":"fig-7.12.jpg","w":1220,"h":411,"ar":2.968},{"id":"7.13","cap":7,"capTitle":"Almacenamiento en pad","part":3,"partTitle":"III · Sistema físico","page":108,"tipo":"foto","caption":"Lona desplegada sobre la platea y lastrada con bolsas mientras se verifica el centrado. Sin lastre, una ráfaga levanta el paño completo y lo arrastra contra el borde inferior de las placas","short":"Lona desplegada sobre la platea y lastrada con bolsas mientras se verifica el centrado","file":"fig-7.13.jpg","w":489,"h":872,"ar":0.561},{"id":"7.14","cap":7,"capTitle":"Almacenamiento en pad","part":3,"partTitle":"III · Sistema físico","page":109,"tipo":"foto","caption":"Izaje del vértice de la lona y fijación desde plataforma elevadora articulada. El uso de plataforma convierte un trabajo en altura sin protección permanente en una maniobra con barandas y punto de anclaje. Ver 14.3","short":"Izaje del vértice de la lona y fijación desde plataforma elevadora articulada","file":"fig-7.14.jpg","w":1116,"h":836,"ar":1.335},{"id":"7.15","cap":7,"capTitle":"Almacenamiento en pad","part":3,"partTitle":"III · Sistema físico","page":110,"tipo":"foto","caption":"Escalera de acceso a tanque, con plataforma y baranda, amurada en unión de placas","short":"Escalera de acceso a tanque, con plataforma y baranda, amurada en unión de placas","file":"fig-7.15.jpg","w":655,"h":872,"ar":0.751},{"id":"7.16","cap":7,"capTitle":"Almacenamiento en pad","part":3,"partTitle":"III · Sistema físico","page":110,"tipo":"foto","caption":"Sistema de bombeo montado junto al tanque pulmón","short":"Sistema de bombeo montado junto al tanque pulmón","file":"fig-7.16.jpg","w":1039,"h":780,"ar":1.332},{"id":"7.17","cap":7,"capTitle":"Almacenamiento en pad","part":3,"partTitle":"III · Sistema físico","page":111,"tipo":"grafico","caption":"Secuencia de montaje de tanque australiano","short":"Secuencia de montaje de tanque australiano","file":"fig-7.17.jpg","w":1194,"h":488,"ar":2.447},{"id":"7.18","cap":7,"capTitle":"Almacenamiento en pad","part":3,"partTitle":"III · Sistema físico","page":112,"tipo":"foto","caption":"Llenado visto en planta: la descarga se hace por encima del pelo de agua y sobre zona ya cubierta, nunca con impacto directo contra la lona seca","short":"Llenado visto en planta: la descarga se hace por encima del pelo de agua y sobre zona ya cubierta, nunca con…","file":"fig-7.18.jpg","w":1117,"h":836,"ar":1.336},{"id":"8.1","cap":8,"capTitle":"Montaje de línea layflat","part":3,"partTitle":"III · Sistema físico","page":117,"tipo":"foto","caption":"Puntera de aluminio de 16 pulgadas ZYfire, con el par de apriete grabado en la pieza por el fabricante: 140 N·m. El dato no depende de una tabla, viaja con el accesorio","short":"Puntera de aluminio de 16 pulgadas ZYfire, con el par de apriete grabado en la pieza por el fabricante: 140…","file":"fig-8.1.jpg","w":656,"h":872,"ar":0.752},{"id":"8.2","cap":8,"capTitle":"Montaje de línea layflat","part":3,"partTitle":"III · Sistema físico","page":118,"tipo":"esquema","caption":"Descarga de carrete a orilla de camino con hidrogrúa, señalizada con cono","short":"Descarga de carrete a orilla de camino con hidrogrúa, señalizada con cono","file":"fig-8.2.jpg","w":1039,"h":583,"ar":1.782},{"id":"8.3","cap":8,"capTitle":"Montaje de línea layflat","part":3,"partTitle":"III · Sistema físico","page":121,"tipo":"foto","caption":"Manipulador telescópico con carrete montado en el devanador, listo para iniciar el desfile","short":"Manipulador telescópico con carrete montado en el devanador, listo para iniciar el desfile","file":"fig-8.3.jpg","w":1220,"h":683,"ar":1.786},{"id":"8.4","cap":8,"capTitle":"Montaje de línea layflat","part":3,"partTitle":"III · Sistema físico","page":122,"tipo":"foto","caption":"Tendido paralelo a camino angosto, sin banquina","short":"Tendido paralelo a camino angosto, sin banquina","file":"fig-8.4.jpg","w":655,"h":872,"ar":0.751},{"id":"8.5","cap":8,"capTitle":"Montaje de línea layflat","part":3,"partTitle":"III · Sistema físico","page":122,"tipo":"foto","caption":"Línea al borde de calzada: el sector de mayor incidencia de pinchaduras","short":"Línea al borde de calzada: el sector de mayor incidencia de pinchaduras","file":"fig-8.5.jpg","w":1039,"h":781,"ar":1.33},{"id":"8.6","cap":8,"capTitle":"Montaje de línea layflat","part":3,"partTitle":"III · Sistema físico","page":125,"tipo":"foto","caption":"Desfile de carretes visto desde la cabina del manipulador. El tendido mecanizado rinde 10 a 15 km por jornada con un operador y su cuadrilla","short":"Desfile de carretes visto desde la cabina del manipulador","file":"fig-8.6.jpg","w":1220,"h":684,"ar":1.784},{"id":"8.7","cap":8,"capTitle":"Montaje de línea layflat","part":3,"partTitle":"III · Sistema físico","page":125,"tipo":"foto","caption":"Tendido desde carretel suspendido en manipulador, en paralelo a la huella y por fuera de la zona de rodamiento. El avance es continuo: los tirones generan torsión en el paño y desalinean los acoples. Rostros difuminados por privacidad","short":"Tendido desde carretel suspendido en manipulador, en paralelo a la huella y por fuera de la zona de rodamiento","file":"fig-8.7.jpg","w":1194,"h":669,"ar":1.785},{"id":"8.8","cap":8,"capTitle":"Montaje de línea layflat","part":3,"partTitle":"III · Sistema físico","page":126,"tipo":"foto","caption":"Tendido con dos manipuladores trabajando en paralelo sobre la misma traza, con carretes de dos series distintas","short":"Tendido con dos manipuladores trabajando en paralelo sobre la misma traza, con carretes de dos series…","file":"fig-8.8.jpg","w":1220,"h":684,"ar":1.784},{"id":"8.9","cap":8,"capTitle":"Montaje de línea layflat","part":3,"partTitle":"III · Sistema físico","page":127,"tipo":"foto","caption":"Devanador apoyado en playa, visto desde el frente. Sobre las horquillas se distinguen los dos pernos machos de acople; atrás, el bastidor con las ruedas motrices y, a la derecha, el banco de mandos","short":"Devanador apoyado en playa, visto desde el frente","file":"fig-8.9.jpg","w":656,"h":872,"ar":0.752},{"id":"8.10","cap":8,"capTitle":"Montaje de línea layflat","part":3,"partTitle":"III · Sistema físico","page":128,"tipo":"foto","caption":"Carrete apoyado sobre su bastidor de transporte. El larguero inferior es el que recibe el perno del devanador","short":"Carrete apoyado sobre su bastidor de transporte","file":"fig-8.10.jpg","w":1013,"h":762,"ar":1.329},{"id":"8.11","cap":8,"capTitle":"Montaje de línea layflat","part":3,"partTitle":"III · Sistema físico","page":128,"tipo":"foto","caption":"Detalle del alojamiento sobre el larguero del bastidor. El perno tiene que quedar calzado a fondo, no apoyado en el borde","short":"Detalle del alojamiento sobre el larguero del bastidor","file":"fig-8.11.jpg","w":655,"h":873,"ar":0.75},{"id":"8.12","cap":8,"capTitle":"Montaje de línea layflat","part":3,"partTitle":"III · Sistema físico","page":129,"tipo":"foto","caption":"Motor hidráulico orbital y rueda motriz de goma. La rueda apoya contra la llanta del carrete y le transmite el giro por fricción","short":"Motor hidráulico orbital y rueda motriz de goma","file":"fig-8.12.jpg","w":656,"h":872,"ar":0.752},{"id":"8.13","cap":8,"capTitle":"Montaje de línea layflat","part":3,"partTitle":"III · Sistema físico","page":130,"tipo":"foto","caption":"Banco de mandos del devanador. Una palanca arrima o separa la rueda motriz; la otra da el sentido de giro","short":"Banco de mandos del devanador","file":"fig-8.13.jpg","w":655,"h":872,"ar":0.751},{"id":"8.14","cap":8,"capTitle":"Montaje de línea layflat","part":3,"partTitle":"III · Sistema físico","page":131,"tipo":"foto","caption":"Acoples rápidos de alimentación del devanador. En la imagen, el acople libre quedó apoyado sobre el suelo y sin tapa, y la manguera apoya sobre el canto del bastidor: son las dos formas más comunes de arruinar un circuito hidráulico","short":"Acoples rápidos de alimentación del devanador","file":"fig-8.14.jpg","w":656,"h":872,"ar":0.752},{"id":"8.15","cap":8,"capTitle":"Montaje de línea layflat","part":3,"partTitle":"III · Sistema físico","page":132,"tipo":"foto","caption":"Succión rígida y descarga en una estación; la manguera rígida evita el colapso por presión negativa","short":"Succión rígida y descarga en una estación; la manguera rígida evita el colapso por presión negativa","file":"fig-8.15.jpg","w":655,"h":872,"ar":0.751},{"id":"8.16","cap":8,"capTitle":"Montaje de línea layflat","part":3,"partTitle":"III · Sistema físico","page":133,"tipo":"foto","caption":"Corrección de la traza sobre un talud de fuerte pendiente. Obsérvense las ondulaciones de la traza, que absorben el desplazamiento de la línea al presurizar, y la posición del equipo sobre la huella superior: nadie permanece aguas abajo durante la maniobra","short":"Corrección de la traza sobre un talud de fuerte pendiente","file":"fig-8.16.jpg","w":1166,"h":872,"ar":1.337},{"id":"8.17","cap":8,"capTitle":"Montaje de línea layflat","part":3,"partTitle":"III · Sistema físico","page":134,"tipo":"foto","caption":"Cruce de camino con rampa aérea modular sobre la layflat","short":"Cruce de camino con rampa aérea modular sobre la layflat","file":"fig-8.17.jpg","w":1039,"h":781,"ar":1.33},{"id":"8.18","cap":8,"capTitle":"Montaje de línea layflat","part":3,"partTitle":"III · Sistema físico","page":136,"tipo":"foto","caption":"Salida de bomba a layflat: brida, acople ranurado y transición a manguera, sobre lona de contención","short":"Salida de bomba a layflat: brida, acople ranurado y transición a manguera, sobre lona de contención","file":"fig-8.18.jpg","w":1039,"h":582,"ar":1.785},{"id":"8.19","cap":8,"capTitle":"Montaje de línea layflat","part":3,"partTitle":"III · Sistema físico","page":137,"tipo":"foto","caption":"Ingreso de línea al pad de fractura por cruce soterrado con casing, junto a las piletas de acopio del equipo","short":"Ingreso de línea al pad de fractura por cruce soterrado con casing, junto a las piletas de acopio del equipo","file":"fig-8.19.jpg","w":656,"h":872,"ar":0.752},{"id":"8.20","cap":8,"capTitle":"Montaje de línea layflat","part":3,"partTitle":"III · Sistema físico","page":139,"tipo":"foto","caption":"Parches modulares bulonados de 10 pulgadas, en sus dos medias cañas. Van en el kit de reparación de cada frente y de cada estación","short":"Parches modulares bulonados de 10 pulgadas, en sus dos medias cañas","file":"fig-8.20.jpg","w":872,"h":873,"ar":0.999},{"id":"8.21","cap":8,"capTitle":"Montaje de línea layflat","part":3,"partTitle":"III · Sistema físico","page":139,"tipo":"foto","caption":"Pinchadura en operación: el chorro conserva toda la energía de la línea presurizada","short":"Pinchadura en operación: el chorro conserva toda la energía de la línea presurizada","file":"fig-8.21.jpg","w":1039,"h":583,"ar":1.782},{"id":"8.22","cap":8,"capTitle":"Montaje de línea layflat","part":3,"partTitle":"III · Sistema físico","page":140,"tipo":"foto","caption":"Pérdida junto a ruta: al agua perdida se suma la calzada mojada y el riesgo para terceros","short":"Pérdida junto a ruta: al agua perdida se suma la calzada mojada y el riesgo para terceros","file":"fig-8.22.jpg","w":1039,"h":583,"ar":1.782},{"id":"8.23","cap":8,"capTitle":"Montaje de línea layflat","part":3,"partTitle":"III · Sistema físico","page":141,"tipo":"foto","caption":"Cruce ejecutado como corresponde: el casing toma la carga del tránsito y el poncho de lona evita el corte contra el borde del caño. Es la configuración que no genera reparaciones","short":"Cruce ejecutado como corresponde: el casing toma la carga del tránsito y el poncho de lona evita el corte…","file":"fig-8.23.jpg","w":656,"h":872,"ar":0.752},{"id":"8.24","cap":8,"capTitle":"Montaje de línea layflat","part":3,"partTitle":"III · Sistema físico","page":141,"tipo":"foto","caption":"Rampa mal ubicada: el módulo no cubre el ancho de rodada y deja la manguera expuesta sobre el borde del camino. La mayoría de las pinchaduras en traza no nace de un defecto del paño sino de una protección de cruce mal dimensionada","short":"Rampa mal ubicada: el módulo no cubre el ancho de rodada y deja la manguera expuesta sobre el borde del camino","file":"fig-8.24.jpg","w":1160,"h":872,"ar":1.33},{"id":"8.25","cap":8,"capTitle":"Montaje de línea layflat","part":3,"partTitle":"III · Sistema físico","page":142,"tipo":"foto","caption":"Consecuencia de una pérdida no detectada a tiempo: el chorro socava el terreno y deja la línea sin apoyo","short":"Consecuencia de una pérdida no detectada a tiempo: el chorro socava el terreno y deja la línea sin apoyo","file":"fig-8.25.jpg","w":1043,"h":872,"ar":1.196},{"id":"8.26","cap":8,"capTitle":"Montaje de línea layflat","part":3,"partTitle":"III · Sistema físico","page":143,"tipo":"foto","caption":"Acople ranurado abierto: se distingue la junta elastomérica alojada en el cuerpo y los dos resaltos que muerden la ranura de la puntera","short":"Acople ranurado abierto: se distingue la junta elastomérica alojada en el cuerpo y los dos resaltos que…","file":"fig-8.26.jpg","w":858,"h":645,"ar":1.33},{"id":"8.27","cap":8,"capTitle":"Montaje de línea layflat","part":3,"partTitle":"III · Sistema físico","page":144,"tipo":"foto","caption":"Detalle de la junta. Es la pieza que sella; el acople sólo la comprime y toma el esfuerzo axial. Una junta endurecida o marcada pierde aunque el acople esté bien ajustado","short":"Detalle de la junta","file":"fig-8.27.jpg","w":655,"h":872,"ar":0.751},{"id":"8.28","cap":8,"capTitle":"Montaje de línea layflat","part":3,"partTitle":"III · Sistema físico","page":144,"tipo":"foto","caption":"Acople y puntera de layflat enfrentados. Las dos ranuras de la puntera son lo que el acople retiene: sin ranura sana no hay unión posible","short":"Acople y puntera de layflat enfrentados","file":"fig-8.28.jpg","w":1013,"h":761,"ar":1.331},{"id":"8.29","cap":8,"capTitle":"Montaje de línea layflat","part":3,"partTitle":"III · Sistema físico","page":145,"tipo":"foto","caption":"Puntera con acople rápido de palanca. Se monta y se libera sin herramienta, lo que la vuelve la preferida en tramos que se arman y desarman con frecuencia","short":"Puntera con acople rápido de palanca","file":"fig-8.29.jpg","w":656,"h":872,"ar":0.752},{"id":"8.30","cap":8,"capTitle":"Montaje de línea layflat","part":3,"partTitle":"III · Sistema físico","page":145,"tipo":"foto","caption":"Acoples de 12 pulgadas estibados en pañol, con su presión nominal grabada en el cuerpo. La identificación de diámetro y presión va en la pieza y no en un remito","short":"Acoples de 12 pulgadas estibados en pañol, con su presión nominal grabada en el cuerpo","file":"fig-8.30.jpg","w":1013,"h":761,"ar":1.331},{"id":"9.1","cap":9,"capTitle":"Derivadores en Y y manifolds","part":4,"partTitle":"IV · Operación","page":148,"tipo":"grafico","caption":"Estación de bombeo: el derivador de succión divide hacia las dos bombas, el de impulsión une hacia una sola línea de salida","short":"Estación de bombeo: el derivador de succión divide hacia las dos bombas, el de impulsión une hacia una sola…","file":"fig-9.1.jpg","w":1194,"h":501,"ar":2.383},{"id":"9.2","cap":9,"capTitle":"Derivadores en Y y manifolds","part":4,"partTitle":"IV · Operación","page":150,"tipo":"foto","caption":"Derivador de impulsión: bridas, acoples ranurados y eslingas de amarre sobre el conjunto. El amarre impide que el empuje desplace las piezas al presurizar","short":"Derivador de impulsión: bridas, acoples ranurados y eslingas de amarre sobre el conjunto","file":"fig-9.2.jpg","w":493,"h":873,"ar":0.565},{"id":"9.3","cap":9,"capTitle":"Derivadores en Y y manifolds","part":4,"partTitle":"IV · Operación","page":152,"tipo":"grafico","caption":"Función del carrete con válvula manual en el llenado y en el vaciado. El mismo componente evacúa aire, purga, admite aire y desagota, según el momento de la operación","short":"Función del carrete con válvula manual en el llenado y en el vaciado","file":"fig-9.3.jpg","w":1297,"h":965,"ar":1.344},{"id":"9.4","cap":9,"capTitle":"Derivadores en Y y manifolds","part":4,"partTitle":"IV · Operación","page":154,"tipo":"foto","caption":"Manifold de cuatro vías con válvulas mariposa de accionamiento a volante y acoples ranurados a layflat","short":"Manifold de cuatro vías con válvulas mariposa de accionamiento a volante y acoples ranurados a layflat","file":"fig-9.4.jpg","w":1039,"h":583,"ar":1.782},{"id":"9.5","cap":9,"capTitle":"Derivadores en Y y manifolds","part":4,"partTitle":"IV · Operación","page":154,"tipo":"foto","caption":"Derivador sobre bastidor, con las dos válvulas de rama y el conjunto amarrado","short":"Derivador sobre bastidor, con las dos válvulas de rama y el conjunto amarrado","file":"fig-9.5.jpg","w":1039,"h":582,"ar":1.785},{"id":"9.6","cap":9,"capTitle":"Derivadores en Y y manifolds","part":4,"partTitle":"IV · Operación","page":155,"tipo":"foto","caption":"Manifold en pad, entre los tanques de acopio y el sistema de bombeo","short":"Manifold en pad, entre los tanques de acopio y el sistema de bombeo","file":"fig-9.6.jpg","w":1039,"h":583,"ar":1.782},{"id":"9.7","cap":9,"capTitle":"Derivadores en Y y manifolds","part":4,"partTitle":"IV · Operación","page":156,"tipo":"foto","caption":"Manifold de piletas de fractura: cada pileta se vincula al colector con un manguerote de 4 pulgadas, y el colector se conecta a la layflat de gran diámetro. Cada rama lleva su válvula, para poder aislar una pileta sin sacar de servicio a las demás","short":"Manifold de piletas de fractura: cada pileta se vincula al colector con un manguerote de 4 pulgadas, y el…","file":"fig-9.7.jpg","w":1167,"h":873,"ar":1.337},{"id":"10.1","cap":10,"capTitle":"Motobombas","part":4,"partTitle":"IV · Operación","page":159,"tipo":"foto","caption":"Dos motobombas sobre patín en estación, con succión e impulsión bridadas y lona de contención","short":"Dos motobombas sobre patín en estación, con succión e impulsión bridadas y lona de contención","file":"fig-10.1.jpg","w":1039,"h":583,"ar":1.782},{"id":"10.2","cap":10,"capTitle":"Motobombas","part":4,"partTitle":"IV · Operación","page":159,"tipo":"foto","caption":"Motobombas identificadas por número, con panel solar para instrumentación y apoyo sobre durmientes","short":"Motobombas identificadas por número, con panel solar para instrumentación y apoyo sobre durmientes","file":"fig-10.2.jpg","w":1039,"h":780,"ar":1.332},{"id":"10.3","cap":10,"capTitle":"Motobombas","part":4,"partTitle":"IV · Operación","page":160,"tipo":"foto","caption":"Conjunto motobomba: bomba de carcasa partida acoplada a motor sobre bastidor","short":"Conjunto motobomba: bomba de carcasa partida acoplada a motor sobre bastidor","file":"fig-10.3.jpg","w":1039,"h":781,"ar":1.33},{"id":"10.4","cap":10,"capTitle":"Motobombas","part":4,"partTitle":"IV · Operación","page":161,"tipo":"foto","caption":"Motobomba de transferencia con el operador como referencia de escala. Bajo el conjunto, la membrana de contención capta eventuales derrames de combustible o lubricante","short":"Motobomba de transferencia con el operador como referencia de escala","file":"fig-10.4.jpg","w":1116,"h":836,"ar":1.335},{"id":"10.5","cap":10,"capTitle":"Motobombas","part":4,"partTitle":"IV · Operación","page":166,"tipo":"grafico","caption":"El NPSH requerido crece con el caudal; el disponible cae por la fricción de succión. El cruce es el inicio de la cavitación, y una succión desfavorable adelanta ese cruce a un caudal menor","short":"El NPSH requerido crece con el caudal; el disponible cae por la fricción de succión","file":"fig-10.5.jpg","w":1194,"h":743,"ar":1.607},{"id":"10.6","cap":10,"capTitle":"Motobombas","part":4,"partTitle":"IV · Operación","page":171,"tipo":"foto","caption":"Rodete visto desde la boca de aspiración. El estado de los álabes y de la luz contra la carcasa define cuánto caudal entrega el equipo a las mismas vueltas","short":"Rodete visto desde la boca de aspiración","file":"fig-10.6.jpg","w":936,"h":703,"ar":1.331},{"id":"10.7","cap":10,"capTitle":"Motobombas","part":4,"partTitle":"IV · Operación","page":172,"tipo":"foto","caption":"Brida de aspiración con su junta de cara plana. La junta existe y es un punto de control: mal asentada o endurecida, es una vía de entrada de aire y el equipo no ceba","short":"Brida de aspiración con su junta de cara plana","file":"fig-10.7.jpg","w":1013,"h":762,"ar":1.329},{"id":"10.8","cap":10,"capTitle":"Motobombas","part":4,"partTitle":"IV · Operación","page":172,"tipo":"foto","caption":"Válvula de retención sobre la impulsión, entre el cuerpo de bomba y el codo de salida. Impide el retorno de la columna cuando el equipo se detiene","short":"Válvula de retención sobre la impulsión, entre el cuerpo de bomba y el codo de salida","file":"fig-10.8.jpg","w":1013,"h":761,"ar":1.331},{"id":"11.1","cap":11,"capTitle":"Telemetría y comunicaciones","part":4,"partTitle":"IV · Operación","page":174,"tipo":"foto","caption":"Transmisor de presión sobre la cañería rígida, con la transición a layflat en primer plano","short":"Transmisor de presión sobre la cañería rígida, con la transición a layflat en primer plano","file":"fig-11.1.jpg","w":1039,"h":582,"ar":1.785},{"id":"11.2","cap":11,"capTitle":"Telemetría y comunicaciones","part":4,"partTitle":"IV · Operación","page":175,"tipo":"foto","caption":"Sala de control: videovigilancia de frentes y esquema SCADA de la traza completa","short":"Sala de control: videovigilancia de frentes y esquema SCADA de la traza completa","file":"fig-11.2.jpg","w":1039,"h":781,"ar":1.33},{"id":"11.3","cap":11,"capTitle":"Telemetría y comunicaciones","part":4,"partTitle":"IV · Operación","page":176,"tipo":"foto","caption":"Puesto de monitoreo en operación: sinóptico de proceso, cámaras sobre puntos críticos de la traza y registros del turno en simultáneo. La telemetría no reemplaza el recorrido de línea, pero acorta el tiempo de detección, que es lo que determina el volumen finalmente derramado","short":"Puesto de monitoreo en operación: sinóptico de proceso, cámaras sobre puntos críticos de la traza y registros…","file":"fig-11.3.jpg","w":1166,"h":873,"ar":1.336},{"id":"12.1","cap":12,"capTitle":"Combustible y servicios de apoyo","part":4,"partTitle":"IV · Operación","page":182,"tipo":"foto","caption":"Cisterna de gasoil de 10.000 litros sobre bandeja de contención, con rombos de riesgo y capacidad rotulada","short":"Cisterna de gasoil de 10.000 litros sobre bandeja de contención, con rombos de riesgo y capacidad rotulada","file":"fig-12.1.jpg","w":1039,"h":779,"ar":1.334},{"id":"12.2","cap":12,"capTitle":"Combustible y servicios de apoyo","part":4,"partTitle":"IV · Operación","page":183,"tipo":"foto","caption":"Torre de iluminación con generador propio, sobre lona con verma perimetral","short":"Torre de iluminación con generador propio, sobre lona con verma perimetral","file":"fig-12.2.jpg","w":1039,"h":583,"ar":1.782},{"id":"12.3","cap":12,"capTitle":"Combustible y servicios de apoyo","part":4,"partTitle":"IV · Operación","page":184,"tipo":"foto","caption":"Luminaria autónoma de LED con panel fotovoltaico sobre patín, junto a la traza. Ilumina el punto de maniobra sin generador, sin consumo de gasoil y sin ruido","short":"Luminaria autónoma de LED con panel fotovoltaico sobre patín, junto a la traza","file":"fig-12.3.jpg","w":471,"h":835,"ar":0.564},{"id":"12.4","cap":12,"capTitle":"Combustible y servicios de apoyo","part":4,"partTitle":"IV · Operación","page":185,"tipo":"foto","caption":"Pañol móvil: contenedor con delimitación, extintor y cartel de identificación","short":"Pañol móvil: contenedor con delimitación, extintor y cartel de identificación","file":"fig-12.4.jpg","w":1039,"h":781,"ar":1.33},{"id":"13.1","cap":13,"capTitle":"Campamentos","part":5,"partTitle":"V · Riesgos, seguridad y ambiente","page":187,"tipo":"foto","caption":"Flota de vehículos livianos: el traslado de personal es el riesgo de mayor severidad","short":"Flota de vehículos livianos: el traslado de personal es el riesgo de mayor severidad","file":"fig-13.1.jpg","w":1039,"h":778,"ar":1.335},{"id":"14.1","cap":14,"capTitle":"Gestión de riesgos y HSE operativo","part":5,"partTitle":"V · Riesgos, seguridad y ambiente","page":192,"tipo":"foto","caption":"Izaje de placa con manipulador telescópico y eslinga de dos ramales","short":"Izaje de placa con manipulador telescópico y eslinga de dos ramales","file":"fig-14.1.jpg","w":655,"h":872,"ar":0.751},{"id":"14.2","cap":14,"capTitle":"Gestión de riesgos y HSE operativo","part":5,"partTitle":"V · Riesgos, seguridad y ambiente","page":192,"tipo":"foto","caption":"Eslingado de placa desde la pila, con arnés y punto de anclaje","short":"Eslingado de placa desde la pila, con arnés y punto de anclaje","file":"fig-14.2.jpg","w":1039,"h":781,"ar":1.33},{"id":"14.3","cap":14,"capTitle":"Gestión de riesgos y HSE operativo","part":5,"partTitle":"V · Riesgos, seguridad y ambiente","page":193,"tipo":"foto","caption":"Tabla de capacidad de carga del equipo de izaje. Se lee al radio real de trabajo, no al mínimo: entre 4,4 y 20,4 metros la capacidad cae de 22.000 a 2.300 kg","short":"Tabla de capacidad de carga del equipo de izaje","file":"fig-14.3.jpg","w":1160,"h":872,"ar":1.33},{"id":"14.4","cap":14,"capTitle":"Gestión de riesgos y HSE operativo","part":5,"partTitle":"V · Riesgos, seguridad y ambiente","page":194,"tipo":"foto","caption":"Grillete con precinto de certificación vigente. Cada elemento de izaje lleva identificación individual y se verifica antes de cada uso","short":"Grillete con precinto de certificación vigente","file":"fig-14.4.jpg","w":935,"h":704,"ar":1.328},{"id":"14.5","cap":14,"capTitle":"Gestión de riesgos y HSE operativo","part":5,"partTitle":"V · Riesgos, seguridad y ambiente","page":194,"tipo":"foto","caption":"Anemómetro calibrado: medición de viento previa y durante la maniobra","short":"Anemómetro calibrado: medición de viento previa y durante la maniobra","file":"fig-14.5.jpg","w":395,"h":872,"ar":0.453},{"id":"14.6","cap":14,"capTitle":"Gestión de riesgos y HSE operativo","part":5,"partTitle":"V · Riesgos, seguridad y ambiente","page":195,"tipo":"foto","caption":"Polvo en suspensión en camino de yacimiento. Es uno de los peligros del IPCR de traslado y explica el límite de velocidad de 40 km/h","short":"Polvo en suspensión en camino de yacimiento","file":"fig-14.6.jpg","w":656,"h":872,"ar":0.752},{"id":"14.7","cap":14,"capTitle":"Gestión de riesgos y HSE operativo","part":5,"partTitle":"V · Riesgos, seguridad y ambiente","page":197,"tipo":"foto","caption":"Entrada en calor previa dentro del anillo, antes de comenzar el despliegue de lona","short":"Entrada en calor previa dentro del anillo, antes de comenzar el despliegue de lona","file":"fig-14.7.jpg","w":1220,"h":551,"ar":2.214},{"id":"14.8","cap":14,"capTitle":"Gestión de riesgos y HSE operativo","part":5,"partTitle":"V · Riesgos, seguridad y ambiente","page":198,"tipo":"foto","caption":"Estación con dos equipos, extintor en soporte propio y puesta a tierra","short":"Estación con dos equipos, extintor en soporte propio y puesta a tierra","file":"fig-14.8.jpg","w":1039,"h":781,"ar":1.33},{"id":"14.9","cap":14,"capTitle":"Gestión de riesgos y HSE operativo","part":5,"partTitle":"V · Riesgos, seguridad y ambiente","page":198,"tipo":"foto","caption":"Cartelería de identificación de traza","short":"Cartelería de identificación de traza","file":"fig-14.9.jpg","w":655,"h":872,"ar":0.751},{"id":"14.10","cap":14,"capTitle":"Gestión de riesgos y HSE operativo","part":5,"partTitle":"V · Riesgos, seguridad y ambiente","page":199,"tipo":"foto","caption":"Tarjeta de identificación de extintor: el control mensual incluye leerla","short":"Tarjeta de identificación de extintor: el control mensual incluye leerla","file":"fig-14.10.jpg","w":656,"h":872,"ar":0.752},{"id":"14.11","cap":14,"capTitle":"Gestión de riesgos y HSE operativo","part":5,"partTitle":"V · Riesgos, seguridad y ambiente","page":199,"tipo":"foto","caption":"Canasto porta-extintores en vehículo de servicio","short":"Canasto porta-extintores en vehículo de servicio","file":"fig-14.11.jpg","w":656,"h":872,"ar":0.752},{"id":"14.12","cap":14,"capTitle":"Gestión de riesgos y HSE operativo","part":5,"partTitle":"V · Riesgos, seguridad y ambiente","page":201,"tipo":"foto","caption":"Hacienda suelta sobre el camino con nieve. Fauna y clima se combinan en el peligro de mayor severidad del servicio","short":"Hacienda suelta sobre el camino con nieve","file":"fig-14.12.jpg","w":1116,"h":840,"ar":1.329},{"id":"14.13","cap":14,"capTitle":"Gestión de riesgos y HSE operativo","part":5,"partTitle":"V · Riesgos, seguridad y ambiente","page":202,"tipo":"foto","caption":"Hielo acumulado bajo un vehículo tras una jornada de invierno. Condiciona la salida, la velocidad y el tiempo de respuesta ante una emergencia","short":"Hielo acumulado bajo un vehículo tras una jornada de invierno","file":"fig-14.13.jpg","w":1117,"h":840,"ar":1.33},{"id":"15.1","cap":15,"capTitle":"Gestión ambiental y derrames","part":5,"partTitle":"V · Riesgos, seguridad y ambiente","page":215,"tipo":"foto","caption":"Derrame de refrigerante bajo un equipo sin verma de contención. Es el defecto que la contención secundaria del 15.2 evita","short":"Derrame de refrigerante bajo un equipo sin verma de contención","file":"fig-15.1.jpg","w":1116,"h":840,"ar":1.329},{"id":"15.2","cap":15,"capTitle":"Gestión ambiental y derrames","part":5,"partTitle":"V · Riesgos, seguridad y ambiente","page":216,"tipo":"foto","caption":"Contenedor de residuos identificado junto al tanque","short":"Contenedor de residuos identificado junto al tanque","file":"fig-15.2.jpg","w":655,"h":872,"ar":0.751},{"id":"15.3","cap":15,"capTitle":"Gestión ambiental y derrames","part":5,"partTitle":"V · Riesgos, seguridad y ambiente","page":217,"tipo":"foto","caption":"Kit antiderrame identificado, en la caja del vehículo de servicio. Va en cada estación, en cada cisterna y en cada vehículo","short":"Kit antiderrame identificado, en la caja del vehículo de servicio","file":"fig-15.3.jpg","w":656,"h":872,"ar":0.752},{"id":"15.4","cap":15,"capTitle":"Gestión ambiental y derrames","part":5,"partTitle":"V · Riesgos, seguridad y ambiente","page":221,"tipo":"foto","caption":"Depósito transitorio de residuos especiales: sector techado, piso impermeable con cordón de contención perimetral, reja con cierre, cartel de identificación de corrientes y extintor en el sector. Los recipientes van rotulados y sobre pallet, sin contacto con el suelo","short":"Depósito transitorio de residuos especiales: sector techado, piso impermeable con cordón de contención…","file":"fig-15.4.jpg","w":1039,"h":583,"ar":1.782},{"id":"15.5","cap":15,"capTitle":"Gestión ambiental y derrames","part":5,"partTitle":"V · Riesgos, seguridad y ambiente","page":222,"tipo":"foto","caption":"Recipientes separados por corriente, cerrados y bajo llave, con cartelería que enumera las corrientes admitidas","short":"Recipientes separados por corriente, cerrados y bajo llave, con cartelería que enumera las corrientes…","file":"fig-15.5.jpg","w":1039,"h":781,"ar":1.33},{"id":"16.1","cap":16,"capTitle":"Logística de transporte","part":6,"partTitle":"VI · Logística y cierre","page":225,"tipo":"foto","caption":"Camión carretón cargado con rollos y cartelería de desvío","short":"Camión carretón cargado con rollos y cartelería de desvío","file":"fig-16.1.jpg","w":1039,"h":777,"ar":1.337},{"id":"16.2","cap":16,"capTitle":"Logística de transporte","part":6,"partTitle":"VI · Logística y cierre","page":227,"tipo":"foto","caption":"Playa de acopio: carretes llenos y carretes vacíos separados por sector","short":"Playa de acopio: carretes llenos y carretes vacíos separados por sector","file":"fig-16.2.jpg","w":1039,"h":583,"ar":1.782},{"id":"16.3","cap":16,"capTitle":"Logística de transporte","part":6,"partTitle":"VI · Logística y cierre","page":227,"tipo":"foto","caption":"Pila de placas acopiadas horizontalmente; el borde inferior es la superficie de sellado","short":"Pila de placas acopiadas horizontalmente; el borde inferior es la superficie de sellado","file":"fig-16.3.jpg","w":656,"h":872,"ar":0.752},{"id":"16.4","cap":16,"capTitle":"Logística de transporte","part":6,"partTitle":"VI · Logística y cierre","page":228,"tipo":"foto","caption":"Carretes metálicos vacíos en playa al cierre de jornada, apoyados sobre sus bases y alineados para el izaje","short":"Carretes metálicos vacíos en playa al cierre de jornada, apoyados sobre sus bases y alineados para el izaje","file":"fig-16.4.jpg","w":1039,"h":781,"ar":1.33},{"id":"16.5","cap":16,"capTitle":"Logística de transporte","part":6,"partTitle":"VI · Logística y cierre","page":228,"tipo":"grafico","caption":"Ciclo de montaje por tramo. El llenado habilita el avance al tramo siguiente","short":"Ciclo de montaje por tramo","file":"fig-16.5.jpg","w":1194,"h":530,"ar":2.253},{"id":"17.1","cap":17,"capTitle":"Desmontaje, recupero y restitución","part":6,"partTitle":"VI · Logística y cierre","page":232,"tipo":"foto","caption":"Desmontaje de tanque: retiro de placas con manipulador, con la lona y el agua remanente a la vista","short":"Desmontaje de tanque: retiro de placas con manipulador, con la lona y el agua remanente a la vista","file":"fig-17.1.jpg","w":1039,"h":583,"ar":1.782},{"id":"17.2","cap":17,"capTitle":"Desmontaje, recupero y restitución","part":6,"partTitle":"VI · Logística y cierre","page":232,"tipo":"foto","caption":"Limpieza de lona durante el desmontaje, previa al plegado y al control de estado","short":"Limpieza de lona durante el desmontaje, previa al plegado y al control de estado","file":"fig-17.2.jpg","w":1220,"h":544,"ar":2.243},{"id":"17.3","cap":17,"capTitle":"Desmontaje, recupero y restitución","part":6,"partTitle":"VI · Logística y cierre","page":233,"tipo":"foto","caption":"Barrido del sedimento decantado hacia la boca de succión, donde se evacua con la última bomba en servicio. Sin este paso el paño se pliega con arena atrapada entre capas. Rostros difuminados por privacidad","short":"Barrido del sedimento decantado hacia la boca de succión, donde se evacua con la última bomba en servicio","file":"fig-17.3.jpg","w":1166,"h":873,"ar":1.336},{"id":"18.1","cap":18,"capTitle":"Indicadores y cierre de campaña","part":6,"partTitle":"VI · Logística y cierre","page":237,"tipo":"foto","caption":"Pad terminado a la espera del set de fractura: la línea montada, llena y probada es el hito que cierra la puesta en marcha","short":"Pad terminado a la espera del set de fractura: la línea montada, llena y probada es el hito que cierra la…","file":"fig-18.1.jpg","w":1116,"h":840,"ar":1.329},{"id":"19.1","cap":19,"capTitle":"Casos de aplicación","part":7,"partTitle":"VII · Anexos","page":239,"tipo":"grafico","caption":"Arquitectura del sistema. Los dos pulmones parten una traza de 28,45 km en tres tramos hidráulicamente independientes","short":"Arquitectura del sistema","file":"fig-19.1.jpg","w":1298,"h":781,"ar":1.662},{"id":"19.2","cap":19,"capTitle":"Casos de aplicación","part":7,"partTitle":"VII · Anexos","page":241,"tipo":"foto","caption":"Estación de rebombeo de la troncal: dos equipos sobre patín, con succión e impulsión en 12 pulgadas y el colector a la vista","short":"Estación de rebombeo de la troncal: dos equipos sobre patín, con succión e impulsión en 12 pulgadas y el…","file":"fig-19.2.jpg","w":1116,"h":595,"ar":1.876},{"id":"19.3","cap":19,"capTitle":"Casos de aplicación","part":7,"partTitle":"VII · Anexos","page":242,"tipo":"foto","caption":"Pulmón intermedio con dos tanques de 5.400 m³. Los 10.800 m³ de cada nodo son los que desacoplan el caudal de la troncal del ritmo de la fractura","short":"Pulmón intermedio con dos tanques de 5.400 m³","file":"fig-19.3.jpg","w":1117,"h":633,"ar":1.765},{"id":"19.4","cap":19,"capTitle":"Casos de aplicación","part":7,"partTitle":"VII · Anexos","page":243,"tipo":"grafico","caption":"Los dos perfiles superpuestos. La cantidad de estaciones es la misma en los dos casos, y las causas son opuestas","short":"Los dos perfiles superpuestos","file":"fig-19.4.jpg","w":1298,"h":755,"ar":1.719},{"id":"19.5","cap":19,"capTitle":"Casos de aplicación","part":7,"partTitle":"VII · Anexos","page":244,"tipo":"grafico","caption":"Perfil de elevación de la troncal del caso B, con las seis estaciones ubicadas sobre su progresiva real","short":"Perfil de elevación de la troncal del caso B, con las seis estaciones ubicadas sobre su progresiva real","file":"fig-19.5.jpg","w":1297,"h":677,"ar":1.916},{"id":"19.6","cap":19,"capTitle":"Casos de aplicación","part":7,"partTitle":"VII · Anexos","page":245,"tipo":"grafico","caption":"Planta de la traza del caso B, dibujada a partir del relevamiento en coordenadas locales. La última milla, en coral, es el tramo más corto y el más retorcido","short":"Planta de la traza del caso B, dibujada a partir del relevamiento en coordenadas locales","file":"fig-19.6.jpg","w":1298,"h":807,"ar":1.608},{"id":"19.7","cap":19,"capTitle":"Casos de aplicación","part":7,"partTitle":"VII · Anexos","page":246,"tipo":"foto","caption":"Línea troncal tendida en paralelo a la huella, por fuera de la zona de rodamiento y siguiendo el terreno","short":"Línea troncal tendida en paralelo a la huella, por fuera de la zona de rodamiento y siguiendo el terreno","file":"fig-19.7.jpg","w":1039,"h":695,"ar":1.495}];
+const CAPTIONES = {"1":"Por qué se hace transfer de agua","2":"Permisos, marco normativo y hoja de ruta","3":"Relevamiento, altimetría y KMZ","4":"Cálculo hidráulico","5":"Captación","6":"Conducción, rebombeos y pulmones","7":"Almacenamiento en pad","8":"Montaje de línea layflat","9":"Derivadores en Y y manifolds","10":"Motobombas","11":"Telemetría y comunicaciones","12":"Combustible y servicios de apoyo","13":"Campamentos","14":"Gestión de riesgos y HSE operativo","15":"Gestión ambiental y derrames","16":"Logística de transporte","17":"Desmontaje, recupero y restitución","18":"Indicadores y cierre de campaña","19":"Casos de aplicación"};
+const PARTS = {"1":"I · Fundamentos","2":"II · Ingeniería previa","3":"III · Sistema físico","4":"IV · Operación","5":"V · Riesgos, seguridad y ambiente","6":"VI · Logística y cierre","7":"VII · Anexos"};
+</script>
+<script>
+(function(){
+  const gallery = document.getElementById('gallery');
+  const chipsBox = document.getElementById('chips');
+  const q = document.getElementById('q');
+  const result = document.getElementById('result');
+  const lb = document.getElementById('lb');
+  const lbImg = document.getElementById('lbImg');
+  const lbFid = document.getElementById('lbFid');
+  const lbTtl = document.getElementById('lbTtl');
+  const lbPos = document.getElementById('lbPos');
+  const lbCap = document.getElementById('lbCap');
+  const lbAside = document.getElementById('lbAside');
+
+  const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const TYPE_LABEL = {foto:'Fotografía', esquema:'Esquema', grafico:'Gráfico'};
+  const TYPE_CLASS = {foto:'foto', esquema:'esquema', grafico:'grafico'};
+
+  // ---------- render ----------
+  const byPart = {};
+  DATA.forEach(d => { (byPart[d.part] = byPart[d.part] || []).push(d); });
+
+  let html = '';
+  Object.keys(byPart).sort().forEach(pk => {
+    const list = byPart[pk];
+    const parts = [...new Set(list.map(d => d.part))];
+    html += '<section class="part" id="parte-'+pk+'">';
+    html += '<div class="part-head"><span class="part-num">Parte '+esc(PARTS[pk].split(' · ')[0])+'</span>'
+          + '<h2 class="part-title serif">'+esc(PARTS[pk].split(' · ')[1])+'</h2><span class="part-rule"></span></div>';
+    const caps = [...new Set(list.map(d => d.cap))].sort((a,b)=>a-b);
+    caps.forEach(c => {
+      const items = list.filter(d => d.cap === c);
+      const title = items[0].capTitle;
+      html += '<section class="chapter" id="cap-'+c+'">';
+      html += '<div class="chapter-head"><span class="num">Capítulo '+c+'</span>'
+            + '<h3>'+esc(title)+'</h3><span class="count">'+items.length+' figura'+(items.length===1?'':'s')+'</span></div>';
+      html += '<div class="grid">';
+      items.forEach(d => {
+        html += '<button class="card" data-id="'+d.id+'" data-tipo="'+d.tipo+'" data-cap="'+d.cap+'" '
+              + 'data-search="'+esc((d.id+' '+d.caption+' '+d.capTitle).toLowerCase())+'">'
+              + '<span class="shot"><img loading="lazy" decoding="async" src="thumb/'+d.file+'" alt="Figura '+d.id.replace('.','‑')+' — '+esc(d.short)+'">'
+              + '<span class="zoom"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M11 8v6M8 11h6"/></svg></span></span>'
+              + '<figcaption><span class="meta"><span class="fid">Fig. '+d.id+'</span>'
+              + '<span class="tag '+TYPE_CLASS[d.tipo]+'">'+TYPE_LABEL[d.tipo]+'</span></span>'
+              + '<p class="short">'+esc(d.short)+'</p>'
+              + '<p class="pg">Capítulo '+d.cap+' · pág. '+d.page+'</p></figcaption></button>';
+      });
+      html += '</div></section>';
+    });
+    html += '</section>';
+  });
+  gallery.innerHTML = html + '<div class="empty" id="empty" hidden>Ninguna figura coincide con la búsqueda.</div>';
+
+  // chips de capítulos
+  const counts = {};
+  DATA.forEach(d => counts[d.cap] = (counts[d.cap]||0)+1);
+  chipsBox.innerHTML = '<button class="chip active" data-ch="0">Todas <span class="n">'+DATA.length+'</span></button>'
+    + Object.keys(counts).sort((a,b)=>a-b).map(c =>
+        '<button class="chip" data-ch="'+c+'">Cap. '+c+' · '+esc(CAPTIONES[c])+' <span class="n">'+counts[c]+'</span></button>').join('');
+
+  // ---------- filtros ----------
+  let type = 'all', term = '';
+  const cards = [...gallery.querySelectorAll('.card')];
+
+  function apply(){
+    let n = 0;
+    cards.forEach(c => {
+      const okT = type === 'all' || c.dataset.tipo === type;
+      const okQ = !term || c.dataset.search.includes(term);
+      const show = okT && okQ;
+      c.style.display = show ? '' : 'none';
+      if (show) n++;
+    });
+    // ocultar capítulos y partes sin visibles
+    gallery.querySelectorAll('.chapter').forEach(ch => {
+      const any = [...ch.querySelectorAll('.card')].some(c => c.style.display !== 'none');
+      ch.style.display = any ? '' : 'none';
+    });
+    gallery.querySelectorAll('.part').forEach(p => {
+      const any = [...p.querySelectorAll('.chapter')].some(c => c.style.display !== 'none');
+      p.style.display = any ? '' : 'none';
+    });
+    document.getElementById('empty').hidden = n !== 0;
+    result.innerHTML = '<b>'+n+'</b> de '+DATA.length+' figuras';
+  }
+
+  document.querySelectorAll('.seg button').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('.seg button').forEach(x => x.setAttribute('aria-pressed', x === b ? 'true' : 'false'));
+      type = b.dataset.type; apply();
+    });
+  });
+  let t;
+  q.addEventListener('input', () => { clearTimeout(t); t = setTimeout(() => { term = q.value.trim().toLowerCase(); apply(); }, 140); });
+  chipsBox.addEventListener('click', e => {
+    const b = e.target.closest('.chip'); if (!b) return;
+    chipsBox.querySelectorAll('.chip').forEach(x => x.classList.toggle('active', x === b));
+    const ch = b.dataset.ch;
+    if (ch === '0') { window.scrollTo({top: gallery.offsetTop - 130, behavior:'smooth'}); }
+    else {
+      const el = document.getElementById('cap-'+ch);
+      if (el) window.scrollTo({top: el.getBoundingClientRect().top + window.scrollY - 130, behavior:'smooth'});
+    }
+  });
+  apply();
+
+  // ---------- lightbox ----------
+  let list = [], cur = 0;
+  function visible(){ return cards.filter(c => c.style.display !== 'none'); }
+  function open(id){
+    list = visible();
+    cur = list.findIndex(c => c.dataset.id === id);
+    if (cur < 0) return;
+    paint();
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function paint(){
+    const c = list[cur]; if (!c) return;
+    const d = DATA.find(x => x.id === c.dataset.id);
+    lbImg.src = 'fig/' + d.file;
+    lbImg.alt = 'Figura ' + d.id.replace('.','‑') + ' — ' + d.short;
+    lbFid.textContent = 'FIGURA ' + d.id;
+    lbTtl.textContent = d.capTitle;
+    lbPos.textContent = (cur+1) + ' / ' + list.length;
+    lbCap.textContent = d.caption;
+    lbAside.innerHTML = TYPE_LABEL[d.tipo] + ' · Capítulo ' + d.cap + ' · página ' + d.page + ' del libro<br>'
+      + '<a href="fig/'+d.file+'" download>Descargar JPG</a>';
+  }
+  function close(){ lb.classList.remove('open'); document.body.style.overflow = ''; }
+  function step(d){ if (!list.length) return; cur = (cur + d + list.length) % list.length; paint(); }
+
+  gallery.addEventListener('click', e => {
+    const c = e.target.closest('.card'); if (c) open(c.dataset.id);
+  });
+  document.getElementById('lbClose').addEventListener('click', close);
+  document.getElementById('lbPrev').addEventListener('click', () => step(-1));
+  document.getElementById('lbNext').addEventListener('click', () => step(1));
+  lb.addEventListener('click', e => { if (e.target === lb || e.target.classList.contains('lb-body')) close(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') step(-1);
+    if (e.key === 'ArrowRight') step(1);
+  });
+})();
+</script>
+</body>
+</html>
